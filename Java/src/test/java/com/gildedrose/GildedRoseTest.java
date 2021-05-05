@@ -18,11 +18,20 @@ public class GildedRoseTest {
 
     @Test
     public void sell_in_days_reduce_one_per_day_when_not_expired() {
-        app = gildedRoseWithItem(item("normal", 20, 1));
+        app = gildedRoseWithItem(anyQualityItemWithSellIn(1));
 
         app.updateQuality();
 
-        assertEquals(0, app.items[0].sellIn);
+        assertSellInEquals(0);
+    }
+
+    @Test
+    public void sell_in_days_reduce_one_per_day_when_just_expired() {
+        app = gildedRoseWithItem(anyQualityItemWithSellIn(0));
+
+        app.updateQuality();
+
+        assertSellInEquals(-1);
     }
 
     @Nested
@@ -114,8 +123,16 @@ public class GildedRoseTest {
 
     }
 
+    private Item anyQualityItemWithSellIn(int sellIn) {
+        return item("normal", 20, sellIn);
+    }
+
     private void assertItemQualityEquals(int expected) {
         assertEquals(expected, app.items[0].quality);
+    }
+
+    private void assertSellInEquals(int expected) {
+        assertEquals(expected, app.items[0].sellIn);
     }
 
     private GildedRose gildedRoseWithItem(Item item) {
