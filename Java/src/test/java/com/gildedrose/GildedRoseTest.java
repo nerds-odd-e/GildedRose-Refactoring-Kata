@@ -70,6 +70,31 @@ public class GildedRoseTest {
         assertItemQualityEquals(expectedUpdateQuality);
     }
 
+    public static Stream<Arguments> dataForBackstagePassesTests() {
+        return Stream.of(
+                arguments("quality increase one per day when sell in days > 10", 0, 11, 1),
+                arguments("quality increase two per day when sell in days = 10", 0, 10, 2),
+                arguments("quality increase two per day when sell in days < 10", 0, 9, 2),
+                arguments("quality increase two per day when sell in days > 5", 0, 6, 2),
+                arguments("quality increase three per day when sell in days = 5", 0, 5, 3),
+                arguments("quality increase three per day when sell in days < 5", 0, 4, 3),
+                arguments("quality increase three per day when sell in days < 5", 0, 4, 3),
+                arguments("quality drop to 0 when expired regardless quality value", 50, 0, 0),
+                arguments("quality can't exceed 50 when increasing two per day", 49, 9, 50),
+                arguments("quality can't exceed 50 when increasing three per day", 48, 4, 50)
+        );
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataForBackstagePassesTests")
+    public void backstage_passes_item(String testName, int currentQuality, int sellInDays, int expectedUpdateQuality) {
+        app = gildedRoseWithItem(item("Backstage passes to a TAFKAL80ETC concert", currentQuality, sellInDays));
+
+        app.updateQuality();
+
+        assertItemQualityEquals(expectedUpdateQuality);
+    }
+
     private void assertItemQualityEquals(int expected) {
         assertEquals(expected, app.items[0].quality);
     }
