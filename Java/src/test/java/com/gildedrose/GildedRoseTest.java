@@ -1,7 +1,6 @@
 package com.gildedrose;
 
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,22 +15,21 @@ public class GildedRoseTest {
 
     private GildedRose app;
 
-    @Test
-    public void sell_in_days_reduce_one_per_day_when_not_expired() {
-        app = gildedRoseWithItem(anyQualityItemWithSellIn(1));
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataForSellInTests")
+    public void sell_in_days(String testName, int currentSellIn, int expectedUpdatedSellIn) {
+        app = gildedRoseWithItem(anyQualityItemWithSellIn(currentSellIn));
 
         app.updateQuality();
 
-        assertSellInEquals(0);
+        assertSellInEquals(expectedUpdatedSellIn);
     }
 
-    @Test
-    public void sell_in_days_reduce_one_per_day_when_just_expired() {
-        app = gildedRoseWithItem(anyQualityItemWithSellIn(0));
-
-        app.updateQuality();
-
-        assertSellInEquals(-1);
+    static Stream<Arguments> dataForSellInTests() {
+        return Stream.of(
+                arguments("sell_in_days_reduce_one_per_day_when_not_expired", 1, 0),
+                arguments("quality_should_keep_as_0_even_when_not_expired", 0, -1)
+        );
     }
 
     @Nested
