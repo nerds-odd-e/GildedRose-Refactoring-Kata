@@ -54,6 +54,22 @@ public class GildedRoseTest {
         assertItemQualityEquals(expectedUpdateQuality);
     }
 
+    public static Stream<Arguments> dataForSulfurasTests() {
+        return Stream.of(
+                arguments("quality is always 80 and never changes", 80, 1, 80)
+        );
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataForSulfurasTests")
+    public void sulfuras_item(String testName, int currentQuality, int sellInDays, int expectedUpdateQuality) {
+        app = gildedRoseWithItem(item("Sulfuras, Hand of Ragnaros", currentQuality, sellInDays));
+
+        app.updateQuality();
+
+        assertItemQualityEquals(expectedUpdateQuality);
+    }
+
     private void assertItemQualityEquals(int expected) {
         assertEquals(expected, app.items[0].quality);
     }
