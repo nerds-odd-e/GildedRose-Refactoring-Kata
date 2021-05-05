@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,6 +16,17 @@ public class GildedRoseTest {
 
     private GildedRose app;
 
+    public static Stream<Arguments> dataForSellInTests() {
+        return Stream.of(
+                arguments("sell in days reduce one per day when not expired", "normal", 1, 0),
+                arguments("sell in days reduce one per day when just expired", "normal", 0, -1),
+                arguments("sell in days reduce one per day when already expired", "normal", -1, -2),
+                arguments("sulfuras sell in days never reduce when not expired", "Sulfuras, Hand of Ragnaros", 1, 1),
+                arguments("sulfuras sell in days never reduce when just expired", "Sulfuras, Hand of Ragnaros", 0, 0),
+                arguments("sulfuras sell in days never reduce when already expired", "Sulfuras, Hand of Ragnaros", -1, -1)
+        );
+    }
+
     @ParameterizedTest(name = "{0}")
     @MethodSource("dataForSellInTests")
     public void sell_in_days(String testName, String itemName, int currentSellIn, int expectedUpdatedSellIn) {
@@ -25,15 +37,14 @@ public class GildedRoseTest {
         assertSellInEquals(expectedUpdatedSellIn);
     }
 
-    static Stream<Arguments> dataForSellInTests() {
-        return Stream.of(
-                arguments("sell in days reduce one per day when not expired", "normal", 1, 0),
-                arguments("sell in days reduce one per day when just expired", "normal", 0, -1),
-                arguments("sell in days reduce one per day when already expired", "normal", -1, -2),
-                arguments("sulfuras sell in days never reduce when not expired", "Sulfuras, Hand of Ragnaros", 1, 1),
-                arguments("sulfuras sell in days never reduce when just expired", "Sulfuras, Hand of Ragnaros", 0, 0),
-                arguments("sulfuras sell in days never reduce when already expired", "Sulfuras, Hand of Ragnaros", -1, -1)
-        );
+    @Test
+    public void should_handle_more_than_one_item() {
+        app = gildedRoseWithItem(item("normal", 40, 5), item("Aged Brie", 10, 8));
+
+        app.updateQuality();
+
+        assertQualityEqualsByItemIndex(39, 0);
+        assertQualityEqualsByItemIndex(11, 1);
     }
 
     @Nested
@@ -130,15 +141,19 @@ public class GildedRoseTest {
     }
 
     private void assertItemQualityEquals(int expected) {
-        assertEquals(expected, app.items[0].quality);
+        assertQualityEqualsByItemIndex(expected, 0);
+    }
+
+    private void assertQualityEqualsByItemIndex(int expected, int index) {
+        assertEquals(expected, app.items[index].quality);
     }
 
     private void assertSellInEquals(int expected) {
         assertEquals(expected, app.items[0].sellIn);
     }
 
-    private GildedRose gildedRoseWithItem(Item item) {
-        return new GildedRose(new Item[]{item});
+    private GildedRose gildedRoseWithItem(Item... items) {
+        return new GildedRose(items);
     }
 
     private Item item(String name, int quality, int sellIn) {
