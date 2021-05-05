@@ -26,8 +26,28 @@ public class GildedRoseTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("dataForNormalTests")
-    public void normal_item(String testName, int currentQuality, int sellInDays, int expectedUpdateQuality) {
-        app = gildedRoseWithItem(normalItem(currentQuality, sellInDays));
+    public void item(String testName, int currentQuality, int sellInDays, int expectedUpdateQuality) {
+        app = gildedRoseWithItem(item("normal", currentQuality, sellInDays));
+
+        app.updateQuality();
+
+        assertItemQualityEquals(expectedUpdateQuality);
+    }
+
+    public static Stream<Arguments> dataForAgedBrieTests() {
+        return Stream.of(
+                arguments("quality increase one per day when not expired", 0, 1, 1),
+                arguments("quality increase two per day when just expired", 0, 0, 2),
+                arguments("quality increase two per day when already expired", 0, -1, 2),
+                arguments("quality can't exceed 50 when not expired", 50, 1, 50),
+                arguments("quality can't exceed 50 when expired", 49, 1, 50)
+        );
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataForAgedBrieTests")
+    public void aged_brie_item(String testName, int currentQuality, int sellInDays, int expectedUpdateQuality) {
+        app = gildedRoseWithItem(item("Aged Brie", currentQuality, sellInDays));
 
         app.updateQuality();
 
@@ -42,8 +62,8 @@ public class GildedRoseTest {
         return new GildedRose(new Item[]{item});
     }
 
-    private Item normalItem(int quality, int sellIn) {
-        return new Item("normal", sellIn, quality);
+    private Item item(String name, int quality, int sellIn) {
+        return new Item(name, sellIn, quality);
     }
 
 }
