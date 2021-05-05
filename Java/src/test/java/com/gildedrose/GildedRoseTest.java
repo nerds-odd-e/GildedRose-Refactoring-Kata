@@ -17,8 +17,8 @@ public class GildedRoseTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("dataForSellInTests")
-    public void sell_in_days(String testName, int currentSellIn, int expectedUpdatedSellIn) {
-        app = gildedRoseWithItem(anyQualityItemWithSellIn(currentSellIn));
+    public void sell_in_days(String testName, String itemName, int currentSellIn, int expectedUpdatedSellIn) {
+        app = gildedRoseWithItem(anyQualityItemWithSellIn(itemName, currentSellIn));
 
         app.updateQuality();
 
@@ -27,8 +27,12 @@ public class GildedRoseTest {
 
     static Stream<Arguments> dataForSellInTests() {
         return Stream.of(
-                arguments("sell_in_days_reduce_one_per_day_when_not_expired", 1, 0),
-                arguments("quality_should_keep_as_0_even_when_not_expired", 0, -1)
+                arguments("sell in days reduce one per day when not expired", "normal", 1, 0),
+                arguments("sell in days reduce one per day when just expired", "normal", 0, -1),
+                arguments("sell in days reduce one per day when already expired", "normal", -1, -2),
+                arguments("sulfuras sell in days never reduce when not expired", "Sulfuras, Hand of Ragnaros", 1, 1),
+                arguments("sulfuras sell in days never reduce when just expired", "Sulfuras, Hand of Ragnaros", 0, 0),
+                arguments("sulfuras sell in days never reduce when already expired", "Sulfuras, Hand of Ragnaros", -1, -1)
         );
     }
 
@@ -121,8 +125,8 @@ public class GildedRoseTest {
 
     }
 
-    private Item anyQualityItemWithSellIn(int sellIn) {
-        return item("normal", 20, sellIn);
+    private Item anyQualityItemWithSellIn(String name, int sellIn) {
+        return item(name, 20, sellIn);
     }
 
     private void assertItemQualityEquals(int expected) {
