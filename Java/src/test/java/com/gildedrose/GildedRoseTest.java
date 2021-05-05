@@ -35,6 +35,33 @@ public class GildedRoseTest {
         assertItemQualityEquals(48);
     }
 
+    @Test
+    public void quality_reduce_two_per_day_when_expired() {
+        app = gildedRoseWithItem(normalItem(3, 0));
+
+        app.updateQuality();
+
+        assertItemQualityEquals(1);
+    }
+
+    @Test
+    public void quality_can_not_reduce_beyond_0_when_expired() {
+        app = gildedRoseWithItem(normalItem(1, 0));
+
+        app.updateQuality();
+
+        assertItemQualityEquals(0);
+    }
+
+    @Test
+    public void quality_should_keep_as_0_even_when_not_expired() {
+        app = gildedRoseWithItem(normalItem(0, 1));
+
+        app.updateQuality();
+
+        assertItemQualityEquals(0);
+    }
+
     private void assertItemQualityEquals(int expected) {
         assertEquals(expected, app.items[0].quality);
     }
