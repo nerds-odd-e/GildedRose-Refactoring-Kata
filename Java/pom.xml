@@ -53,7 +53,7 @@
                 <configuration>
                     <reportsDirectory>pit-reports</reportsDirectory>
                     <targetClasses>
-                        <param>com.gildedrose.GildedRose</param>
+                        <param>com.gildedrose.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>com.gildedrose.GildedRoseTest</param>
