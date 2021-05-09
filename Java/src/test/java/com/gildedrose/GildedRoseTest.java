@@ -156,11 +156,11 @@ public class GildedRoseTest {
     }
 
     private void assertQualityEqualsByItemIndex(int expected, int index) {
-        assertEquals(expected, app.items[index].quality);
+        assertEquals(expected, app.items[index].getQuality());
     }
 
     private void assertSellInEquals(int expected) {
-        assertEquals(expected, app.items[0].sellIn);
+        assertEquals(expected, app.items[0].getSellIn());
     }
 
     private GildedRose gildedRoseWithItem(Item... items) {
