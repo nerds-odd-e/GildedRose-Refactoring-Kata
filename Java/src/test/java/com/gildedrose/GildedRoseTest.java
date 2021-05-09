@@ -139,6 +139,7 @@ public class GildedRoseTest {
                     arguments("quality increase three per day when sell in days < 5", 0, 4, 3),
                     arguments("quality increase three per day when sell in days < 5", 0, 4, 3),
                     arguments("quality drop to 0 when expired regardless quality value", 50, 0, 0),
+                    arguments("quality drop to 0 when expired regardless quality value", 50, 1, 50), // added to kill a mutator
                     arguments("quality can't exceed 50 when increasing two per day", 49, 9, 50),
                     arguments("quality can't exceed 50 when increasing three per day", 48, 4, 50)
             );
