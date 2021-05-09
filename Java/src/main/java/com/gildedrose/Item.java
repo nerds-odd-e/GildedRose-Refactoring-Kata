@@ -33,31 +33,33 @@ public class Item {
             case "Backstage passes to a TAFKAL80ETC concert":
                 increaseQuality();
 
-                if (sellIn < 11) {
+                if (willExpireInDays(10)) {
                     increaseQuality();
                 }
 
-                if (sellIn < 6) {
+                if (willExpireInDays(5)) {
                     increaseQuality();
                 }
 
                 if (isExpiredAfterReduction()) {
-                    quality = 0;
+                    makeNoQuality();
                 }
                 break;
             case "Sulfuras, Hand of Ragnaros":
                 break;
             default:
-                if (quality > 0) {
-                    quality = quality - 1;
-                }
+                decreaseQuality();
 
                 if (isExpiredAfterReduction()) {
-                    if (quality > 0) {
-                        quality = quality - 1;
-                    }
+                    decreaseQuality();
                 }
                 break;
+        }
+    }
+
+    private void decreaseQuality() {
+        if (quality > 0) {
+            quality = quality - 1;
         }
     }
 
@@ -69,5 +71,13 @@ public class Item {
 
     private boolean isExpiredAfterReduction() {
         return --sellIn < 0;
+    }
+
+    private void makeNoQuality() {
+        quality = 0;
+    }
+
+    private boolean willExpireInDays(int days) {
+        return sellIn <= days;
     }
 }
