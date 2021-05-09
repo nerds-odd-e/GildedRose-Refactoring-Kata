@@ -77,6 +77,8 @@ public class GildedRoseTest {
                     arguments("quality increase one per day when not expired", 0, 1, 1),
                     arguments("quality increase two per day when just expired", 0, 0, 2),
                     arguments("quality increase two per day when already expired", 0, -1, 2),
+                    arguments("quality increase two per day when already expired", 49, -1, 50), // added to kill a mutator
+                    arguments("quality increase two per day when already expired", 48, -1, 50), // added to kill a mutator
                     arguments("quality can't exceed 50 when not expired", 50, 1, 50),
                     arguments("quality can't exceed 50 when expired", 49, 1, 50)
             );
