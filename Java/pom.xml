@@ -69,10 +69,10 @@
                         <mutator>CONSTRUCTOR_CALLS</mutator>
                         <mutator>CRCR1</mutator>
                         <mutator>CRCR2</mutator>
-                        <mutator>CRCR3</mutator>
-                        <mutator>CRCR4</mutator>
+                        <!--                        <mutator>CRCR3</mutator>-->
+                        <!--                        <mutator>CRCR4</mutator>-->
                         <mutator>CRCR5</mutator>
-                        <mutator>CRCR6</mutator>
+                        <!--                        <mutator>CRCR6</mutator>-->
                         <mutator>EMPTY_RETURNS</mutator>
                         <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
                         <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
