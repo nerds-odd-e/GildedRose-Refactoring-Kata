@@ -94,7 +94,9 @@ public class GildedRoseTest {
 
         public Stream<Arguments> dataForSulfurasTests() {
             return Stream.of(
-                    arguments("quality is always 80 and never changes", 80, 1, 80)
+                    arguments("quality is always 80 and never changes when not expired", 80, 1, 80),
+                    arguments("quality is always 80 and never changes when just expired", 80, 0, 80), // added to kill a mutator
+                    arguments("quality is always 80 and never changes when already expired", 80, -1, 80) // added to kill a mutator
             );
         }
 
