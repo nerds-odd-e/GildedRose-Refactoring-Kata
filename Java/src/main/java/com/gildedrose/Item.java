@@ -26,9 +26,7 @@ public class Item {
             case "Aged Brie":
                 increaseQuality();
 
-                sellIn = sellIn - 1;
-
-                if (sellIn < 0) {
+                if (--sellIn < 0) {
                     increaseQuality();
                 }
                 break;
