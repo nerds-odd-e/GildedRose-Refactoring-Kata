@@ -26,7 +26,7 @@ public class Item {
             case "Aged Brie":
                 increaseQuality();
 
-                if (--sellIn < 0) {
+                if (isExpiredAfterReduction()) {
                     increaseQuality();
                 }
                 break;
@@ -41,7 +41,7 @@ public class Item {
                     increaseQuality();
                 }
 
-                if (--sellIn < 0) {
+                if (isExpiredAfterReduction()) {
                     quality = 0;
                 }
                 break;
@@ -52,9 +52,7 @@ public class Item {
                     quality = quality - 1;
                 }
 
-                sellIn = sellIn - 1;
-
-                if (sellIn < 0) {
+                if (isExpiredAfterReduction()) {
                     if (quality > 0) {
                         quality = quality - 1;
                     }
@@ -67,5 +65,9 @@ public class Item {
         if (quality < 50) {
             quality = quality + 1;
         }
+    }
+
+    private boolean isExpiredAfterReduction() {
+        return --sellIn < 0;
     }
 }
