@@ -13,7 +13,7 @@ class GildedRose {
         }
     }
 
-    private void updateQuality(Item item) {
+    private void foo(Item item) {
         if (!item.name.equals("Aged Brie")
                 && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (item.quality > 0) {
@@ -61,6 +61,14 @@ class GildedRose {
                     item.quality = item.quality + 1;
                 }
             }
+        }
+    }
+
+    private void updateQuality(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            foo(item);
+        } else {
+            foo(item);
         }
     }
 }
