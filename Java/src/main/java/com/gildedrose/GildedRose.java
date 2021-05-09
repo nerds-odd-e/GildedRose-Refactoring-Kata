@@ -13,26 +13,6 @@ class GildedRose {
         }
     }
 
-    private void foo(Item item) {
-        if (item.quality > 0) {
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.quality = item.quality - 1;
-            }
-        }
-
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.sellIn = item.sellIn - 1;
-        }
-
-        if (item.sellIn < 0) {
-            if (item.quality > 0) {
-                if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                    item.quality = item.quality - 1;
-                }
-            }
-        }
-    }
-
     private void updateQuality(Item item) {
         if (item.name.equals("Aged Brie")) {
             if (item.quality < 50) {
@@ -70,9 +50,41 @@ class GildedRose {
             }
         } else {
             if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                foo(item);
+                if (item.quality > 0) {
+                    if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                        item.quality = item.quality - 1;
+                    }
+                }
+
+                if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    item.sellIn = item.sellIn - 1;
+                }
+
+                if (item.sellIn < 0) {
+                    if (item.quality > 0) {
+                        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                            item.quality = item.quality - 1;
+                        }
+                    }
+                }
             } else {
-                foo(item);
+                if (item.quality > 0) {
+                    if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                        item.quality = item.quality - 1;
+                    }
+                }
+
+                if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    item.sellIn = item.sellIn - 1;
+                }
+
+                if (item.sellIn < 0) {
+                    if (item.quality > 0) {
+                        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                            item.quality = item.quality - 1;
+                        }
+                    }
+                }
             }
         }
     }
