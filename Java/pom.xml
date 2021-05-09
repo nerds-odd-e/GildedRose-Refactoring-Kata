@@ -55,7 +55,59 @@
                     <threads>4</threads>
                     <timestampedReports>false</timestampedReports>
                     <mutators>
-                        <mutator>ALL</mutator>
+                        <!--                        <mutator>ABS</mutator>-->
+                        <mutator>AOD1</mutator>
+                        <mutator>AOD2</mutator>
+                        <mutator>AOR_1</mutator>
+                        <mutator>AOR_2</mutator>
+                        <mutator>AOR_3</mutator>
+                        <mutator>AOR_4</mutator>
+                        <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
+                        <mutator>FALSE_RETURNS</mutator>
+                        <mutator>TRUE_RETURNS</mutator>
+                        <mutator>CONDITIONALS_BOUNDARY</mutator>
+                        <mutator>CONSTRUCTOR_CALLS</mutator>
+                        <mutator>CRCR1</mutator>
+                        <mutator>CRCR2</mutator>
+                        <mutator>CRCR3</mutator>
+                        <mutator>CRCR4</mutator>
+                        <mutator>CRCR5</mutator>
+                        <mutator>CRCR6</mutator>
+                        <mutator>EMPTY_RETURNS</mutator>
+                        <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
+                        <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                        <mutator>REMOVE_SWITCH</mutator>
+                        <mutator>EXPERIMENTAL_SWITCH</mutator>
+                        <mutator>INCREMENTS</mutator>
+                        <mutator>INLINE_CONSTS</mutator>
+                        <mutator>INVERT_NEGS</mutator>
+                        <mutator>MATH</mutator>
+                        <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
+                        <mutator>NEGATE_CONDITIONALS</mutator>
+                        <mutator>NON_VOID_METHOD_CALLS</mutator>
+                        <mutator>NULL_RETURNS</mutator>
+                        <mutator>OBBN1</mutator>
+                        <mutator>OBBN2</mutator>
+                        <mutator>OBBN3</mutator>
+                        <mutator>PRIMITIVE_RETURNS</mutator>
+                        <mutator>RETURNS</mutator>
+                        <mutator>REMOVE_CONDITIONALS_EQ_ELSE</mutator>
+                        <mutator>REMOVE_CONDITIONALS_EQ_IF</mutator>
+                        <mutator>REMOVE_CONDITIONALS_ORD_ELSE</mutator>
+                        <mutator>REMOVE_CONDITIONALS_ORD_IF</mutator>
+                        <mutator>REMOVE_CONDITIONALS</mutator>
+                        <mutator>REMOVE_INCREMENTS</mutator>
+                        <mutator>RETURN_VALS</mutator>
+                        <!--                        <mutator>ROR1</mutator>-->
+                        <!--                        <mutator>ROR2</mutator>-->
+                        <!--                        <mutator>ROR3</mutator>-->
+                        <!--                        <mutator>ROR4</mutator>-->
+                        <!--                        <mutator>ROR5</mutator>-->
+                        <!--                        <mutator>UOI1</mutator>-->
+                        <!--                        <mutator>UOI2</mutator>-->
+                        <mutator>UOI3</mutator>
+                        <mutator>UOI4</mutator>
+                        <mutator>VOID_METHOD_CALLS</mutator>
                     </mutators>
                 </configuration>
             </plugin>
