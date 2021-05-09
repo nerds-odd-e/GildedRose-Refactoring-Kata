@@ -123,6 +123,7 @@ public class GildedRoseTest {
             return Stream.of(
                     arguments("quality increase one per day when sell in days > 10", 0, 11, 1),
                     arguments("quality increase two per day when sell in days = 10", 0, 10, 2),
+                    arguments("quality increase two per day when sell in days = 10", 48, 10, 50), // added to kill a mutator
                     arguments("quality increase two per day when sell in days < 10", 0, 9, 2),
                     arguments("quality increase two per day when sell in days > 5", 0, 6, 2),
                     arguments("quality increase three per day when sell in days = 5", 0, 5, 3),
