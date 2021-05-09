@@ -52,12 +52,8 @@
                 </dependencies>
                 <configuration>
                     <reportsDirectory>pit-reports</reportsDirectory>
-                    <targetClasses>
-                        <param>com.gildedrose.*</param>
-                    </targetClasses>
-                    <targetTests>
-                        <param>com.gildedrose.GildedRoseTest</param>
-                    </targetTests>
+                    <threads>4</threads>
+                    <timestampedReports>false</timestampedReports>
                     <mutators>
                         <mutator>ALL</mutator>
                     </mutators>
