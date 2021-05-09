@@ -24,16 +24,12 @@ public class Item {
     public void updateQuality() {
         switch (name) {
             case "Aged Brie":
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
+                increaseQuality();
 
                 sellIn = sellIn - 1;
 
                 if (sellIn < 0) {
-                    if (quality < 50) {
-                        quality = quality + 1;
-                    }
+                    increaseQuality();
                 }
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
@@ -41,15 +37,11 @@ public class Item {
                     quality = quality + 1;
 
                     if (sellIn < 11) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
+                        increaseQuality();
                     }
 
                     if (sellIn < 6) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
+                        increaseQuality();
                     }
                 }
 
@@ -74,6 +66,12 @@ public class Item {
                     }
                 }
                 break;
+        }
+    }
+
+    private void increaseQuality() {
+        if (quality < 50) {
+            quality = quality + 1;
         }
     }
 }
