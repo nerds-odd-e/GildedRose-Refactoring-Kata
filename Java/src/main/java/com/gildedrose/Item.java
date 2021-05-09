@@ -31,21 +31,17 @@ public class Item {
                 }
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                if (quality < 50) {
-                    quality = quality + 1;
+                increaseQuality();
 
-                    if (sellIn < 11) {
-                        increaseQuality();
-                    }
-
-                    if (sellIn < 6) {
-                        increaseQuality();
-                    }
+                if (sellIn < 11) {
+                    increaseQuality();
                 }
 
-                sellIn = sellIn - 1;
+                if (sellIn < 6) {
+                    increaseQuality();
+                }
 
-                if (sellIn < 0) {
+                if (--sellIn < 0) {
                     quality = 0;
                 }
                 break;
