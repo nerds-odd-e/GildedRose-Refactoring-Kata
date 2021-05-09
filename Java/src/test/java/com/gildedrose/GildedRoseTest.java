@@ -24,9 +24,12 @@ public class GildedRoseTest {
                 arguments("sulfuras sell in days never reduce when not expired", "Sulfuras, Hand of Ragnaros", 1, 1),
                 arguments("sulfuras sell in days never reduce when just expired", "Sulfuras, Hand of Ragnaros", 0, 0),
                 arguments("sulfuras sell in days never reduce when already expired", "Sulfuras, Hand of Ragnaros", -1, -1),
-                arguments("sulfuras sell in days never reduce when not expired", "Backstage passes to a TAFKAL80ETC concert", 1, 0), // added to kill a mutator
-                arguments("sulfuras sell in days never reduce when just expired", "Backstage passes to a TAFKAL80ETC concert", 0, -1), // added to kill a mutator
-                arguments("sulfuras sell in days never reduce when already expired", "Backstage passes to a TAFKAL80ETC concert", -1, -2) // added to kill a mutator
+                arguments("backstage passes sell in days reduce one per day when not expired", "Backstage passes to a TAFKAL80ETC concert", 1, 0), // added to kill a mutator
+                arguments("backstage passes sell in days reduce one per day when just expired", "Backstage passes to a TAFKAL80ETC concert", 0, -1), // added to kill a mutator
+                arguments("backstage passes sell in days reduce one per day when already expired", "Backstage passes to a TAFKAL80ETC concert", -1, -2), // added to kill a mutator
+                arguments("aged brie sell in days reduce one per day when not expired", "Aged Brie", 1, 0), // added to kill a mutator
+                arguments("aged brie sell in days reduce one per day when just expired", "Aged Brie", 0, -1), // added to kill a mutator
+                arguments("aged brie sell in days reduce one per day when already expired", "Aged Brie", -1, -2) // added to kill a mutator
         );
     }
 
