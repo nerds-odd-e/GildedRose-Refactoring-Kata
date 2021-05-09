@@ -126,6 +126,7 @@ public class GildedRoseTest {
         Stream<Arguments> dataForBackstagePassesTests() {
             return Stream.of(
                     arguments("quality increase one per day when sell in days > 10", 0, 11, 1),
+                    arguments("quality increase one per day when sell in days > 10", 50, 11, 50), // added to kill a mutator
                     arguments("quality increase two per day when sell in days = 10", 0, 10, 2),
                     arguments("quality increase two per day when sell in days = 10", 48, 10, 50), // added to kill a mutator
                     arguments("quality increase two per day when sell in days < 10", 0, 9, 2),
