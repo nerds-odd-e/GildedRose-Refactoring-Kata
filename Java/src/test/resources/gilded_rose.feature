@@ -18,10 +18,31 @@ Feature: Gilded Rose
       | reduce one per day when not expired  | normal   | 50      | 1      | 49              |
       | reduce one per day when just expired | normal   | 50      | 0      | 48              |
 
-  Scenario: Sell in days by jfactory
+  Scenario Outline: Sell in days by jfactory - <testName>
     Given jfactory gilded rose item
-      | name   | sellIn |
-      | normal | 1      |
+      | name       | sellIn          |
+      | <itemName> | <currentSellIn> |
     When update quality
-    Then item sell in should be 0
+    Then gilded rose items should be:
+    """
+      sellIn: [<expectedSellIn>]
+    """
+    Examples:
+      | testName                             | itemName | currentSellIn | expectedSellIn |
+      | reduce one per day when not expired  | normal   | 1             | 0              |
+      | reduce one per day when just expired | normal   | 0             | -1             |
+
+  Scenario Outline: Quality - <testName>
+    Given jfactory gilded rose item
+      | name       | sellIn   | quality   |
+      | <itemName> | <sellIn> | <quality> |
+    When update quality
+    Then gilded rose items should be:
+    """
+      quality: [<expectedQuality>]
+    """
+    Examples:
+      | testName                             | itemName | quality | sellIn | expectedQuality |
+      | reduce one per day when not expired  | normal   | 50      | 1      | 49              |
+      | reduce one per day when just expired | normal   | 50      | 0      | 48              |
 

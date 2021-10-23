@@ -1,6 +1,10 @@
 package com.gildedrose;
 
 class GildedRose {
+    public Item[] getItems() {
+        return items;
+    }
+
     private final Item[] items;
 
     public GildedRose(Item[] items) {

@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.github.leeonky.dal.DAL;
+import com.github.leeonky.dal.runtime.DalException;
 import com.github.leeonky.jfactory.JFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Steps {
 
     private GildedRose app;
-    private JFactory jFactory = new JFactory();
+    private final JFactory jFactory = new JFactory();
 
     @Given("gilded rose item with name {string} and sell in {int}")
     public void gilded_rose_item_with_name_and_sell_in(String name, int sellIn) {
@@ -65,4 +67,13 @@ public class Steps {
         return new Item(name, sellIn, quality);
     }
 
+    @Then("gilded rose items should be:")
+    public void gildedRoseItemsShouldBe(String assertion) {
+        try {
+            new DAL().evaluateAll(app.getItems(), assertion);
+        } catch (DalException dalException) {
+            System.err.println(dalException.show(assertion));
+            throw dalException;
+        }
+    }
 }

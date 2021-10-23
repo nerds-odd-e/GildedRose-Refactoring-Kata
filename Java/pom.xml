@@ -35,8 +35,19 @@
         </dependency>
         <dependency>
             <groupId>com.github.leeonky</groupId>
+            <artifactId>DAL-java</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.leeonky</groupId>
             <artifactId>jfactory</artifactId>
             <version>0.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.leeonky</groupId>
+            <artifactId>bean-util</artifactId>
+            <version>0.2.9</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

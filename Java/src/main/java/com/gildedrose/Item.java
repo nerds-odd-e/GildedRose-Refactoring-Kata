@@ -2,10 +2,26 @@ package com.gildedrose;
 
 public class Item {
 
-    private final String name;
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSellIn(int sellIn) {
+        this.sellIn = sellIn;
+    }
+
+    public void setQuality(int quality) {
+        this.quality = quality;
+    }
 
     private int sellIn;
     private int quality;
+
+    public Item() {
+    }
+
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
