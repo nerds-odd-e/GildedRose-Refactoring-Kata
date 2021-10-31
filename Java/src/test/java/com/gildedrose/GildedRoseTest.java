@@ -19,8 +19,8 @@ public class GildedRoseTest {
 
     public static Stream<Arguments> dataForSellInTests() {
         return Stream.of(
-//                arguments("sell in days reduce one per day when not expired", "normal", 1, 0),
-//                arguments("sell in days reduce one per day when just expired", "normal", 0, -1),
+                arguments("sell in days reduce one per day when not expired", "normal", 1, 0),
+                arguments("sell in days reduce one per day when just expired", "normal", 0, -1),
                 arguments("sell in days reduce one per day when already expired", "normal", -1, -2),
                 arguments("sulfuras sell in days never reduce when not expired", "Sulfuras, Hand of Ragnaros", 1, 1),
                 arguments("sulfuras sell in days never reduce when just expired", "Sulfuras, Hand of Ragnaros", 0, 0),
@@ -65,8 +65,8 @@ public class GildedRoseTest {
 
         public Stream<Arguments> dataForNormalTests() {
             return Stream.of(
-//                    arguments("quality_reduce_one_per_day_when_not_expired", 50, 1, 49),
-//                    arguments("quality_reduce_one_per_day_when_just_expired", 50, 0, 48),
+                    arguments("quality_reduce_one_per_day_when_not_expired", 50, 1, 49),
+                    arguments("quality_reduce_one_per_day_when_just_expired", 50, 0, 48),
                     arguments("quality_reduce_one_per_day_when_already_expired", 50, -1, 48),
                     arguments("quality_reduce_two_per_day_when_expired", 3, 0, 1),
                     arguments("quality_can_not_reduce_beyond_0_when_expired", 1, 0, 0),
@@ -145,7 +145,6 @@ public class GildedRoseTest {
                     arguments("quality increase two per day when sell in days > 5", 0, 6, 2),
                     arguments("quality increase three per day when sell in days = 5", 0, 5, 3),
                     arguments("quality increase three per day when sell in days = 5", 47, 5, 50), // added to kill a mutator
-                    arguments("quality increase three per day when sell in days < 5", 0, 4, 3),
                     arguments("quality increase three per day when sell in days < 5", 0, 4, 3),
                     arguments("quality drop to 0 when expired regardless quality value", 50, 0, 0),
                     arguments("quality drop to 0 when expired regardless quality value", 50, 1, 50), // added to kill a mutator
